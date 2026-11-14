@@ -8,19 +8,22 @@ Three parts: what comes next, what each release added (newest first), and what's
 
 A new session starts here. Read `CLAUDE.md` (the brief) first; the handbook in eurth-org/eurth-style wins on everything shared.
 
-**Done so far (steps 1 to 4 of the brief):**
+**Done (steps 1 to 4 of the brief), all pushed, 192 tests green (`npm test`, `npm run check`):**
 
 - The repo, the brief as `CLAUDE.md`, licence, README, CI (check and test).
-- The engine in `src/cities/`, plain TypeScript, with 149 tests in `tests/`: the sums (the sheet's check numbers are a test), the model and its cleaning, number reading and writing, the link, the description and notes, wikitext, CSV, names, presets, and the profile's "cities" section.
-
-**In progress:**
-
-- Content and data for the guide and glossary (`src/content/`, `src/data/`).
+- **The engine** in `src/cities/`, plain TypeScript: the sums (the sheet's check numbers are a test), the model and its cleaning, number reading and writing, the link, the description and notes, wikitext, CSV, names, presets, six example countries, and the profile's "cities" section.
+- **The data:** `src/data/worldbank.json`, 153 real countries from the World Bank (`npm run data` refreshes it), read through `src/cities/world.ts`.
+- **The content:** the guide (`src/content/guide.md`, about 3,000 words, 23 sources), the glossary (`src/content/glossary.ts`, 30 terms) and the urbanisation-by-era table (`src/content/eras.ts`). Tests hold the guide's figures to the engine and the data.
+- **The profile:** [eurth-org/eurth-profile#1](https://github.com/eurth-org/eurth-profile/pull/1) proposes `cities.population`, `cities.largestShare` and `cities.exponent`. Cities already reads and writes them, and works without them.
 
 **Blocked, and on what:**
 
-- **The site (step 5)** waits for `@eurth/style` 1.0.0. Check `gh release list --repo eurth-org/eurth-style`. Until it is out: no Astro scaffold, pages or styles. Once it is: start from its starter template, then follow "Next" below from the top.
-- **The pull request to eurth-profile** waits for its schema to be on GitHub (on 14 November only its README was pushed). The schema being written there has `cities.urbanisation` and `cities.list` (name, population, capital). Propose adding `cities.population` (integer, the total population the cities were sized for), `cities.largestShare` (number, 0 to 100, per cent of the urban population) and `cities.exponent` (number, 0 to 3), with the descriptions in `src/cities/profile.ts`.
+- **The site (step 5)** waits for `@eurth/style` 1.0.0. Check with `gh release list --repo eurth-org/eurth-style`. Until a 1.0.0 release is listed: no Astro scaffold, pages or styles. Once it is: start from its starter template, then follow "Next" from the top.
+
+**Open questions for Orioni:**
+
+- Is the wikitext right for IIWiki? (Next, item 9.)
+- Should the primate preset also change the rank-size number, or get a setting of its own? (Next, item 10.)
 
 ## Next
 
@@ -36,6 +39,8 @@ In order:
 8. **Launch workflow:** `LAUNCH_AT` = `2026-12-13T00:00:00+01:00`; scheduled for 22:30 UTC on 12 December, with `workflow_dispatch` as the fallback. No deploy of any kind before then.
 9. **Check the wikitext against IIWiki's Template:Largest cities of Orioni.** IIWiki sits behind a bot check, so the export follows Wikipedia's `{{Largest cities}}` parameters from memory. Orioni to paste the template's source, or confirm the output works on IIWiki.
 10. **Primacy as its own setting.** With the sheet's method, a primate city (40%) and ten cities add up to 117% of the urban population, because real primate cities don't have a second city half their size. For now the calculator says so and suggests a way out. Better: let the second city's size be set apart from the rule (city 2 = a share of city 1, the rest following rank-size from there).
+11. **Before launch, spot-check the guide's city figures** in the Primate cities and "break the pattern" sections against the census pages behind source 11: they were gathered by a research pass and rounded on purpose ("about eight times"), but not each read by hand. Check the profile pull request has merged, and if 1.0.0 of @eurth/profile was tagged without it, that the fields are in a later release.
+12. **Hints under the urbanisation box** from `erasFor()` ("an early modern kingdom"), and under the largest city's share from `nearestByShare()` ("about where Colombia is").
 
 Ideas for later:
 

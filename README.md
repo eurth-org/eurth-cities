@@ -30,8 +30,11 @@ The 28%, the power of n (1.0) and the number of cities (10, up to 50) are settin
 | Naming cities from a list or from the profile | `src/cities/names.ts` |
 | Presets for the largest city's share | `src/cities/presets.ts` |
 | The Eurth profile's "cities" section, read and written | `src/cities/profile.ts` |
-| The guide and the glossary | `src/content/` |
-| Real countries, for the guide (World Bank snapshot) | `src/data/`, made by `tools/fetch-worldbank.mjs` |
+| Six example countries, one of each kind | `src/cities/examples.ts` |
+| Real countries to compare with (World Bank snapshot) | `src/cities/world.ts`, `src/data/worldbank.json`, made by `tools/fetch-worldbank.mjs` |
+| The guide, with its sources | `src/content/guide.md` (read by `src/content/guide.ts`) |
+| The glossary | `src/content/glossary.ts` |
+| What to type for urbanisation, by era | `src/content/eras.ts` |
 | Tests | `tests/` |
 
 The engine in `src/cities/` is plain TypeScript with no browser or framework in it: a country's cities are data, and every export is a function of that data.

@@ -63,6 +63,37 @@ export function shareSpread(countries: readonly Country[] = COUNTRIES): ShareSpr
   return { count: shares.length, lowerQuartile: one(0.25), median: one(0.5), upperQuartile: one(0.75) };
 }
 
+export interface SizeBand {
+  id: 'small' | 'middling' | 'large' | 'giant';
+  /** "5 to 20 million". */
+  label: string;
+  /** From this many people… */
+  min: number;
+  /** …to fewer than this many. */
+  max: number;
+}
+
+/** Countries by size: the bigger the country, the smaller its largest city's share. */
+export const SIZE_BANDS: readonly SizeBand[] = [
+  { id: 'small', label: 'under 5 million', min: 0, max: 5_000_000 },
+  { id: 'middling', label: '5 to 20 million', min: 5_000_000, max: 20_000_000 },
+  { id: 'large', label: '20 to 100 million', min: 20_000_000, max: 100_000_000 },
+  { id: 'giant', label: 'over 100 million', min: 100_000_000, max: Infinity },
+];
+
+/** The band a population falls in. */
+export function sizeBand(population: number): SizeBand {
+  return SIZE_BANDS.find((band) => population >= band.min && population < band.max) ?? (SIZE_BANDS[SIZE_BANDS.length - 1] as SizeBand);
+}
+
+/** The middle largest-city share of the countries in each size band, in per cent, rounded to a whole number. */
+export function shareBySize(countries: readonly Country[] = COUNTRIES): { band: SizeBand; count: number; median: number }[] {
+  return SIZE_BANDS.map((band) => {
+    const shares = countries.filter((c) => c.population >= band.min && c.population < band.max).map((c) => c.largestShare).sort((a, b) => a - b);
+    return { band, count: shares.length, median: Math.round(quantile(shares, 0.5)) };
+  });
+}
+
 /** The share of countries whose largest city holds less than this, as a fraction: where a setting sits in the real world. */
 export function shareStanding(largestShare: number, countries: readonly Country[] = COUNTRIES): number {
   if (countries.length === 0) return NaN;

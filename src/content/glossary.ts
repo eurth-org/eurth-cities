@@ -80,7 +80,7 @@ export const GLOSSARY: readonly Term[] = [
     id: 'king-effect',
     term: 'King effect',
     definition:
-      'When the top one or two items of a ranking are far larger than the rule that fits all the others would allow. Paris among French cities is the classic case. A primate city is a king effect.',
+      'When the top one or two items of a ranking are far larger than the rule that fits all the others would allow. Paris does it to the cities of France: the rest fall on a line, and Paris sits far above it. A primate city is a king effect.',
     see: ['primate-city', 'rank-size-rule'],
   },
   {
@@ -108,7 +108,7 @@ export const GLOSSARY: readonly Term[] = [
   {
     id: 'megacity',
     term: 'Megacity',
-    definition: 'A city of ten million people or more, by the United Nations’ count. There were two in 1950, New York and Tokyo; there are more than thirty now.',
+    definition: 'A city of ten million people or more, by the United Nations’ count. In 1950 only New York and Tokyo qualified; by 2018 the United Nations counted 33.',
     see: ['urban-agglomeration', 'megalopolis'],
   },
   {
@@ -122,7 +122,7 @@ export const GLOSSARY: readonly Term[] = [
     id: 'metropolitan-area',
     term: 'Metropolitan area',
     definition:
-      'A city together with the suburbs and towns whose people commute to it: the city as a labour market. It is usually the largest of the three ways to count a city, and the one that follows the rank-size rule best.',
+      'A city together with the suburbs and towns whose people commute to it: the city as a labour market. It is usually the largest of the three ways to count a city, and which way you count changes how well the rank-size rule fits.',
     see: ['city-proper', 'urban-agglomeration'],
   },
   {
@@ -158,7 +158,7 @@ export const GLOSSARY: readonly Term[] = [
     id: 'primate-city',
     term: 'Primate city',
     definition:
-      'A largest city that is out of all proportion to the rest: by Mark Jefferson’s 1939 definition, at least twice the size of the next city and more than twice as significant. Bangkok, Budapest and Montevideo are primate cities; no German or Indian city is.',
+      'A largest city that is out of all proportion to the rest, commonly defined as at least twice the size of the next city and more than twice as significant. The name is the geographer Mark Jefferson’s, from 1939. Bangkok, Budapest and Montevideo are primate cities; no German or Indian city is.',
     see: ['primacy', 'king-effect', 'largest-city-share'],
   },
   {
@@ -192,7 +192,7 @@ export const GLOSSARY: readonly Term[] = [
     id: 'town',
     term: 'Town',
     definition:
-      'A settlement larger than a village and smaller than a city. Where the lines fall is each country’s own business: Denmark counts 200 people as urban, Japan asks for 50,000. In the calculator, towns are where the urban population outside the listed cities lives.',
+      'A settlement larger than a village and smaller than a city. Where the lines fall is each country’s own business: Denmark counts a built-up place of 200 people as urban, Japan asks 50,000 of a city. In the calculator, towns are where the urban population outside the listed cities lives.',
     see: ['market-town', 'urban-population'],
   },
   {
