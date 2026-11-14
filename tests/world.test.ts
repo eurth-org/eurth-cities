@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { calculate } from '../src/cities/calc';
 import { LIMITS } from '../src/cities/model';
-import { presetFor, SHARE_PRESETS } from '../src/cities/presets';
+import { exampleState } from '../src/cities/model';
+import { applyPreset, presetFor, SHARE_PRESETS } from '../src/cities/presets';
 import { COUNTRIES, country, nearestByShare, quantile, shareSpread, shareStanding, stateFromCountry, WORLD_SOURCE } from '../src/cities/world';
 
 describe('the World Bank snapshot', () => {
@@ -100,10 +101,10 @@ describe('where the settings sit in the real world', () => {
 
 describe('presets', () => {
   it('are the three the brief names', () => {
-    expect(SHARE_PRESETS.map((preset) => [preset.id, preset.largestShare])).toEqual([
-      ['primate', 40],
-      ['default', 28],
-      ['balanced', 15],
+    expect(SHARE_PRESETS.map((preset) => [preset.id, preset.largestShare, preset.exponent])).toEqual([
+      ['primate', 40, 1.3],
+      ['default', 28, 1],
+      ['balanced', 15, 1],
     ]);
     for (const preset of SHARE_PRESETS) {
       expect(preset.name.length).toBeGreaterThan(0);
@@ -111,11 +112,40 @@ describe('presets', () => {
     }
   });
 
-  it('presetFor finds the preset a share matches', () => {
-    expect(presetFor(28)?.id).toBe('default');
-    expect(presetFor(40)?.id).toBe('primate');
-    expect(presetFor(15)?.id).toBe('balanced');
-    expect(presetFor(27.9)).toBeUndefined();
+  it("the typical preset is Orioni's sheet, and the calculator opens on it", () => {
+    expect(presetFor(exampleState())?.id).toBe('default');
+  });
+
+  it('no preset asks for more people than live in towns, with ten cities listed', () => {
+    for (const preset of SHARE_PRESETS) {
+      const result = calculate(applyPreset(exampleState(), preset));
+      expect(result.overfull, preset.id).toBe(false);
+      expect(result.fits, preset.id).toBeGreaterThanOrEqual(10);
+    }
+  });
+
+  it('the primate city: ten cities hold 91% of the townsfolk, and the second city is about two-fifths of the first', () => {
+    const primate = SHARE_PRESETS[0]!;
+    const result = calculate(applyPreset(exampleState(), primate));
+    expect(Math.round(result.listedShare * 100)).toBe(91);
+    expect(result.cities[1]!.size).toBeCloseTo(0.406, 3);
+    // With the plain rule it would not fit: that is why the preset sets the rank-size number too.
+    expect(Math.round(calculate({ ...exampleState(), largestShare: 40 }).listedShare * 100)).toBe(117);
+  });
+
+  it('applyPreset sets the two settings and nothing else, and choosing another preset undoes it', () => {
+    const [primate, typical] = SHARE_PRESETS;
+    const changed = applyPreset(exampleState(), primate!);
+    expect(changed).toEqual({ ...exampleState(), largestShare: 40, exponent: 1.3 });
+    expect(applyPreset(changed, typical!)).toEqual(exampleState());
+  });
+
+  it('presetFor finds the preset the two settings match', () => {
+    expect(presetFor({ largestShare: 28, exponent: 1 })?.id).toBe('default');
+    expect(presetFor({ largestShare: 40, exponent: 1.3 })?.id).toBe('primate');
+    expect(presetFor({ largestShare: 15, exponent: 1 })?.id).toBe('balanced');
+    expect(presetFor({ largestShare: 40, exponent: 1 })).toBeUndefined();
+    expect(presetFor({ largestShare: 27.9, exponent: 1 })).toBeUndefined();
   });
 });
 

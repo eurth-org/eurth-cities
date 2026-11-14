@@ -28,7 +28,7 @@ The 28%, the power of n (1.0) and the number of cities (10, up to 50) are settin
 | Wikitext: a `{{Largest cities}}` call and a plain table | `src/cities/wikitext.ts` |
 | CSV | `src/cities/csv.ts` |
 | Naming cities from a list or from the profile | `src/cities/names.ts` |
-| Presets for the largest city's share | `src/cities/presets.ts` |
+| Presets for the largest city's share (the primate one also sets the rank-size number) | `src/cities/presets.ts` |
 | The Eurth profile's "cities" section, read and written | `src/cities/profile.ts` |
 | Six example countries, one of each kind | `src/cities/examples.ts` |
 | Real countries to compare with (World Bank snapshot) | `src/cities/world.ts`, `src/data/worldbank.json`, made by `tools/fetch-worldbank.mjs` |

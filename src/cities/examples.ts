@@ -23,13 +23,13 @@ export const EXAMPLES: readonly Example[] = [
   {
     id: 'varesh',
     title: 'Varesh, a primate city',
-    blurb: 'One great port holds two in five townsfolk and the rest fall away fast: the largest city at 40%, the rank-size number at 1.2.',
+    blurb: 'One great port holds two in five townsfolk and the rest fall away fast: the largest city at 40%, the rank-size number at 1.3.',
     state: {
       nation: 'Varesh',
       population: 6_400_000,
       urbanisation: 58,
       largestShare: 40,
-      exponent: 1.2,
+      exponent: 1.3,
       count: 8,
       names: ['Port Varesh', 'Lissenby', 'Carrowmere', 'Tolvane', 'Eskwick', 'Marrenfold', 'Dunhallow', 'Sable Cross'],
       capital: 1,

@@ -63,7 +63,7 @@ import { readFileSync } from 'node:fs';
 import { calculate } from '../src/cities/calc';
 import { example } from '../src/cities/examples';
 import { exampleState } from '../src/cities/model';
-import { SHARE_PRESETS } from '../src/cities/presets';
+import { applyPreset, SHARE_PRESETS } from '../src/cities/presets';
 import { COUNTRIES, shareBySize, sizeBand, SIZE_BANDS } from '../src/cities/world';
 import { ERAS, erasFor } from '../src/content/eras';
 import { guideHeadings, guideSources, headingId, parseGuide } from '../src/content/guide';
@@ -128,6 +128,8 @@ describe('the guide', () => {
     expect(text).toContain('the first nineteen cities');
     expect(Math.round(calculate({ ...exampleState(), largestShare: 40 }).listedShare * 100)).toBe(117);
     expect(text).toContain('add up to 117%');
+    expect(Math.round(calculate(applyPreset(exampleState(), SHARE_PRESETS[0]!)).listedShare * 100)).toBe(91);
+    expect(text).toContain('hold 91% of the townsfolk');
   });
 
   it('quotes its worked example correctly', () => {
@@ -149,7 +151,7 @@ describe('the guide', () => {
       ['Uruguay', 55], ['Mongolia', 68], ['China', 3], ['Singapore', 100],
     ];
     for (const [name, percent] of quoted) expect(Math.round(share(name)), name).toBe(percent);
-    for (const preset of SHARE_PRESETS) expect(text).toContain(`| ${preset.name} | ${preset.largestShare}% |`);
+    for (const preset of SHARE_PRESETS) expect(text).toContain(`| ${preset.name} | ${preset.largestShare}% | ${preset.exponent.toFixed(1)} |`);
   });
 });
 

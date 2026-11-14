@@ -12,7 +12,7 @@ This guide explains the three numbers the calculator asks for, what they are in 
 
 - **Urbanisation:** about 8% for a medieval realm, 10 to 15% for an early modern kingdom, 30% for a trading republic, 35 to 50% for an industrialising nation, 60 to 85% for a modern one.
 - **The largest city's share:** leave it at 28% for a middling country. Raise it towards 40% for a small country with one dominant city. Lower it towards 15%, or under 10%, for a large or federal country.
-- **The rank-size number:** leave it at 1.0. Try 0.8 for a country of near-equal cities, or 1.2 and more to go with a dominant capital.
+- **The rank-size number:** leave it at 1.0. Try 0.8 for a country of near-equal cities, or 1.3 to go with a dominant capital (the Primate city preset does this for you).
 
 ## How the calculator works
 
@@ -67,11 +67,11 @@ The World Bank publishes, for 153 countries, the share of the urban population l
 
 The calculator's three presets are a high, a middling and a low country:
 
-| Preset | Largest city's share | Real countries near it |
-| --- | --- | --- |
-| Primate city | 40% | Chile 40%, Peru 39%, Greece 38%, Portugal 46% |
-| Typical | 28% | Colombia 28%, Ecuador 28%, Belarus 29% |
-| Balanced country | 15% | South Africa 16%, Kazakhstan 16%, Spain 17% |
+| Preset | Largest city's share | Rank-size number | Real countries near that share |
+| --- | --- | --- | --- |
+| Primate city | 40% | 1.3 | Chile 40%, Peru 39%, Greece 38%, Portugal 46% |
+| Typical | 28% | 1.0 | Colombia 28%, Ecuador 28%, Belarus 29% |
+| Balanced country | 15% | 1.0 | South Africa 16%, Kazakhstan 16%, Spain 17% |
 
 Size is most of the story. The bigger the country, the smaller the share:
 
@@ -94,7 +94,7 @@ Primacy is measured two ways, and they disagree. By the ratio of first city to s
 
 What makes a primate city? A study of 85 countries found the largest city about 42% bigger when it is also the capital, and about half as big again under a dictatorship; countries that trade more have smaller largest cities [12]. Small countries, centralised states and former imperial capitals tend the same way.
 
-**To make one in the calculator:** choose the Primate city preset, then either raise the rank-size number to 1.2 or more, or list fewer cities. With the plain rule, a 40% capital and ten cities add up to 117% of the urban population, because a real primate city does not have a second city half its size.
+**To make one in the calculator:** choose the Primate city preset. It sets the largest city to 40% and the rank-size number to 1.3, so the second city is about two-fifths of the first, and the ten largest cities hold 91% of the townsfolk. The preset changes both numbers for a reason: with the plain rule, a 40% capital and ten cities add up to 117% of the urban population, because a real primate city does not have a second city half its size.
 
 ## Urbanisation by era
 

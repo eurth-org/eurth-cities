@@ -8,7 +8,7 @@ Three parts: what comes next, what each release added (newest first), and what's
 
 A new session starts here. Read `CLAUDE.md` (the brief) first; the handbook in eurth-org/eurth-style wins on everything shared.
 
-**Done (steps 1 to 4 of the brief), all pushed, 192 tests green (`npm test`, `npm run check`):**
+**Done (steps 1 to 4 of the brief), all pushed, 196 tests green (`npm test`, `npm run check`):**
 
 - The repo, the brief as `CLAUDE.md`, licence, README, CI (check and test).
 - **The engine** in `src/cities/`, plain TypeScript: the sums (the sheet's check numbers are a test), the model and its cleaning, number reading and writing, the link, the description and notes, wikitext, CSV, names, presets, six example countries, and the profile's "cities" section.
@@ -20,10 +20,9 @@ A new session starts here. Read `CLAUDE.md` (the brief) first; the handbook in e
 
 - **The site (step 5)** waits for `@eurth/style` 1.0.0. Check with `gh release list --repo eurth-org/eurth-style`. Until a 1.0.0 release is listed: no Astro scaffold, pages or styles. Once it is: start from its starter template, then follow "Next" from the top.
 
-**Open questions for Orioni:**
+**Open question for Orioni:**
 
 - Is the wikitext right for IIWiki? (Next, item 9.)
-- Should the primate preset also change the rank-size number, or get a setting of its own? (Next, item 10.)
 
 ## Next
 
@@ -38,7 +37,7 @@ In order:
 7. **Everything the handbook asks of every tool:** titles and descriptions, JSON-LD, sitemap, robots.txt, llms.txt, Open Graph images, manifest and icons, service worker, `_headers` with the Content-Security-Policy and its test, axe and Lighthouse in CI, the offline note, the install button.
 8. **Launch workflow:** `LAUNCH_AT` = `2026-12-13T00:00:00+01:00`; scheduled for 22:30 UTC on 12 December, with `workflow_dispatch` as the fallback. No deploy of any kind before then.
 9. **Check the wikitext against IIWiki's Template:Largest cities of Orioni.** IIWiki sits behind a bot check, so the export follows Wikipedia's `{{Largest cities}}` parameters from memory. Orioni to paste the template's source, or confirm the output works on IIWiki.
-10. **Primacy as its own setting.** With the sheet's method, a primate city (40%) and ten cities add up to 117% of the urban population, because real primate cities don't have a second city half their size. For now the calculator says so and suggests a way out. Better: let the second city's size be set apart from the rule (city 2 = a share of city 1, the rest following rank-size from there).
+10. **Primacy as its own setting.** With the plain rule, a primate city (40%) and ten cities add up to 117% of the urban population, because real primate cities don't have a second city half their size. Decided on 14 November 2026 (Orioni): the Primate city preset also sets the rank-size number to 1.3, so ten cities hold 91%; the other two presets set it back to 1.0 (`applyPreset`). Anyone who types 40% by hand and keeps 1.0 still gets the plain note with a way out. Later, perhaps: let the second city's size be set apart from the rule (city 2 = a share of city 1, the rest following rank-size from there).
 11. **Before launch, spot-check the guide's city figures** in the Primate cities and "break the pattern" sections against the census pages behind source 11: they were gathered by a research pass and rounded on purpose ("about eight times"), but not each read by hand. Check the profile pull request has merged, and if 1.0.0 of @eurth/profile was tagged without it, that the fields are in a later release.
 12. **Hints under the urbanisation box** from `erasFor()` ("an early modern kingdom"), and under the largest city's share from `nearestByShare()` ("about where Colombia is").
 
